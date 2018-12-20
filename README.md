@@ -23,10 +23,10 @@ This project is still a very early work-in-progress—it's currently getting bat
 <!--
 Badge References
 -->
-[mlw-badge]:https://img.shields.io/badge/platform-iOS-8056d5.svg
-[issues-badge]:https://img.shields.io/github/issues/cmilr/swift-core-restore.svg
-[license-badge]:https://img.shields.io/github/license/cmilr/swift-core-restore.svg
-[coc-badge]:https://img.shields.io/badge/code%20of-conduct-ff69b4.svg?style=flat
+[mlw-badge]:https://img.shields.io/badge/platform-iOS-8056d5.svg?style=for-the-badge
+[issues-badge]:https://img.shields.io/github/issues/cmilr/swift-core-restore.svg?style=for-the-badge
+[license-badge]:https://img.shields.io/github/license/cmilr/swift-core-restore.svg?style=for-the-badge
+[coc-badge]:https://img.shields.io/badge/code%20of-conduct-ff69b4.svg?style=for-the-badge
 
 <!--
 URL References
