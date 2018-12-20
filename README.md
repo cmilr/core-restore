@@ -8,8 +8,6 @@ CoreRestore is a Swift library allowing you to easily add **backup and restore**
 
 This project is still a very early work-in-progress—it's currently getting battle-tested in the beta release of my app [Delilah](https://cmillerco.com/delilah)—but I hope to have this README better fleshed out in the coming weeks, including detailed installation and usage info. Thanks for your patience.
 
-## Questions? Drop Me a Line!
-
 ### Contact
 - Email: cary@cmillerco.com
 - Twitter: [@carycodes](https://twitter.com/carycodes)
