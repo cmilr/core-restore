@@ -11,8 +11,8 @@ This project is still a very early work-in-progress—it's currently getting bat
 ## Questions? Drop Me a Line!
 
 ### Contact
-- Email: cary.a.miller@gmail.com
-- Twitter: [@cmillerco](https://twitter.com/cmillerco) & [@carycodes](https://twitter.com/carycodes)
+- Email: cary@cmillerco.com
+- Twitter: [@carycodes](https://twitter.com/carycodes)
 - GitHub: [cmilr](https://github.com/cmilr/)
 
 ### License
