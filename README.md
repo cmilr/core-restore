@@ -4,7 +4,7 @@
 [![Code of Conduct][coc-badge]][coc]&nbsp;
 
 # Swift CoreRestore
-CoreRestore is a Swift library allowing you to easily add **backup and restore** functionality to iOS apps that employ Apple's Core Data. I built this library because I wanted the users of my apps to be able to easily restore their data to a previous state should the need ever arise (ahem-programmer error.)
+CoreRestore is a Swift library allowing you to easily add **backup and restore** functionality to iOS apps that employ Apple's Core Data. I built this library because I wanted the users of my apps to be able to easily restore their data to a previous state should the need ever arise (ahem-programmer error 😅)
 
 This project is still a very early work-in-progress—it's currently getting battle-tested in the beta release of my app [Delilah](https://cmillerco.com/delilah)—but I hope to have this README better fleshed out in the coming weeks, including detailed installation and usage info. Thanks for your patience.
 
