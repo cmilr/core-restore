@@ -1,8 +1,25 @@
 //
 //  CoreRestore.swift
 //
-//  Created by Cary Miller on 11/28/18.
-//  Copyright © 2018 Cary Miller.
+//  Copyright © 2018 Cary Miller. (http://cmillerco.com/)
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
 //
 
 import Foundation
@@ -21,26 +38,24 @@ class CoreRestore {
       return documentDirectory.appendingPathComponent("/Backups")
    }
 
-   private let coreDataStack: CoreDataStack
    private let modelName: String
    private let container: NSPersistentContainer
    private let formatter = DateFormatter()
-   public var requiresBackup = false
+   public var appRequiresBackup = false
 
-   public init(coreDataStack: CoreDataStack) {
-      self.coreDataStack = coreDataStack
-      self.modelName = coreDataStack.modelName
-      self.container = coreDataStack.container
+   public init(modelName: String, container: NSPersistentContainer) {
+      self.modelName = modelName
+      self.container = container
    }
 
-   public func backup() {
-      backup(toDirectory: backupDirectory)
-   }
-
-   public func backup(toDirectory targetDirectory: URL) {
-      if !FileManager.default.fileExists(atPath: targetDirectory.path) {
+   public func backup(toDirectoryURL targetDirectoryURL: URL) {
+      if !FileManager.default.fileExists(atPath: targetDirectoryURL.path) {
          do {
-            try FileManager.default.createDirectory(at: targetDirectory, withIntermediateDirectories: false, attributes: nil)
+            try FileManager.default.createDirectory(
+               at: targetDirectoryURL,
+               withIntermediateDirectories: false,
+               attributes: nil
+            )
          } catch let error {
             print("Error: Failed to create missing backup directory — \(error)")
             return
@@ -58,9 +73,9 @@ class CoreRestore {
       formatter.dateFormat = "yyyy-MM-dd_HH-mm-ss"
       let dateString = formatter.string(from: now)
 
-      let backupBaseFile = targetDirectory.path + "/backup_\(dateString)"
-      let backupShmFile = targetDirectory.path + "/backup_\(dateString)-shm"
-      let backupWalFile = targetDirectory.path + "/backup_\(dateString)-wal"
+      let backupBaseFile = targetDirectoryURL.path + "/backup_\(dateString)"
+      let backupShmFile = targetDirectoryURL.path + "/backup_\(dateString)-shm"
+      let backupWalFile = targetDirectoryURL.path + "/backup_\(dateString)-wal"
       let backupBaseFileURL = URL(fileURLWithPath: backupBaseFile)
       let backupShmFileURL = URL(fileURLWithPath: backupShmFile)
       let backupWalFileURL = URL(fileURLWithPath: backupWalFile)
@@ -74,7 +89,7 @@ class CoreRestore {
       }
    }
 
-   public func restore(fromFile backupFileURL: URL) {
+   public func restore(fromFileURL backupFileURL: URL) {
       guard FileManager.default.fileExists(atPath: backupFileURL.path) else {
          print("Error: Backup file could not be found")
          return
@@ -126,16 +141,9 @@ class CoreRestore {
          }
       }
    }
-}
-
-extension CoreRestore {
-   public func backupAndPrune() {
-      backup(toDirectory: backupDirectory)
-      pruneBackupsToMostRecent(50)
-   }
 
    public func pruneBackupsToMostRecent(_ targetCount: Int) {
-      let backups = sortedArrayOfParsedBackups()
+      let backups = arrayOfBackups(sortedBy: .orderedDescending)
       guard backups.count > targetCount else {
          return
       }
@@ -158,19 +166,19 @@ extension CoreRestore {
       }
    }
 
-   public func sortedArrayOfParsedBackups() -> [CoreDataBackup] {
-      var backups = [CoreDataBackup]()
-      guard let fileURLs = getFilesFromBackupDirectory() else {
+   public func arrayOfBackups(sortedBy: ComparisonResult) -> [CoreRestoreBackup] {
+      var backups = [CoreRestoreBackup]()
+      guard let allFileNames = contentsOfBackupDirectory() else {
          return backups
       }
 
-      let files = fileURLs
+      let backupFileNames = allFileNames
          .filter { $0.hasPrefix("backup") }
          .filter { !$0.hasSuffix("shm") }
          .filter { !$0.hasSuffix("wal") }
 
-      for file in files {
-         let dateComponents = file.split(separator: "_")
+      for fileName in backupFileNames {
+         let dateComponents = fileName.split(separator: "_")
          let timeComponents = dateComponents[2].split(separator: "-")
          let composedDate = "\(dateComponents[1])T\(timeComponents[0]):\(timeComponents[1]):\(timeComponents[2])"
 
@@ -182,16 +190,28 @@ extension CoreRestore {
          formatter.timeStyle = .medium
          let dateString = formatter.string(from: date)
 
-         let fileURL = URL(fileURLWithPath: backupDirectory.path + "/" + file)
-         backups.append(CoreDataBackup(title: dateString, date: date, url: fileURL))
+         let fileURL = URL(fileURLWithPath: backupDirectory.path + "/" + fileName)
+         backups.append(CoreRestoreBackup(title: dateString, date: date, url: fileURL))
       }
-      backups.sort { $0.date.compare($1.date) == .orderedDescending }
+      backups.sort { $0.date.compare($1.date) == sortedBy }
       return backups
    }
 
-   private func getFilesFromBackupDirectory() -> [String]? {
+   private func contentsOfBackupDirectory() -> [String]? {
       return try? FileManager.default.contentsOfDirectory(
          atPath: backupDirectory.path
       )
+   }
+}
+
+// MARK: Convenience Methods
+extension CoreRestore {
+   public func backup() {
+      backup(toDirectoryURL: backupDirectory)
+   }
+
+   public func backupThenPrune(to targetCount: Int) {
+      backup(toDirectoryURL: backupDirectory)
+      pruneBackupsToMostRecent(targetCount)
    }
 }
