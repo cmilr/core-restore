@@ -1,5 +1,5 @@
 //
-//  BackupMetadata.swift
+//  CoreRestoreBackup.swift
 //
 //  Copyright © 2018 Cary Miller. (http://cmillerco.com/)
 //
