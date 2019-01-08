@@ -23,11 +23,10 @@ URL References
 [coc]:https://github.com/cmilr/swift-core-restore/blob/master/CODE_OF_CONDUCT.md
 
 # Swift CoreRestore
-**⚠️⚠️ WARNING ⚠️⚠️** This software is in active early development and should not be used in production code until testing has been completed. That said...
 
 CoreRestore is a Swift library allowing you to easily add **backup and restore** functionality to iOS apps that employ Apple's Core Data. I built this library because I wanted the users of my apps to be able to easily restore their data to a previous state should the need ever arise (ahem-programmer error 😅)
 
-This project is still a very early work-in-progress—it's currently getting battle-tested in the beta release of my app [Delilah](https://cmillerco.com/delilah)—but I hope to have this README better fleshed out in the coming weeks, including detailed installation and usage info. Thanks for your patience.
+**⚠️ NOTE ⚠️** This project is still a very early work-in-progress—it's currently getting battle-tested in the beta release of my app [Dalilah](https://cmillerco.com/dalilah)—but I hope to have this README better fleshed out in the coming weeks, including detailed installation and usage info. Thanks for your patience.
 
 ## Contact
 - Email: cary@cmillerco.com
