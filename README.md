@@ -1,3 +1,4 @@
+<img src="Images/core-restore-demo.gif" width="199" align="right" title="iOS Core Data Backup and Restore in Swift">
 <!--
 Badges
 -->
