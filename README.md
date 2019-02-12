@@ -12,7 +12,7 @@ Badge References
 -->
 [mlw-badge]:https://img.shields.io/badge/platform-iOS-8056d5.svg?style=for-the-badge&logo=apple&logoColor=white
 [issues-badge]:https://img.shields.io/github/issues/cmilr/swift-core-restore.svg?style=for-the-badge&logo=github&logoColor=white
-[license-badge]:https://img.shields.io/github/license/cmilr/swift-core-restore-ff69b4.svg?style=for-the-badge
+[license-badge]:https://img.shields.io/github/license/cmilr/swift-core-restore.svg?style=for-the-badge
 [coc-badge]:https://img.shields.io/badge/code%20of-conduct-ff69b4.svg?style=for-the-badge
 
 <!--
