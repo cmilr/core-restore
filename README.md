@@ -1,4 +1,3 @@
-<img src="Images/core-restore-demo.gif" width="300" align="right" title="iOS Core Data Backup and Restore in Swift"><br>
 <!--
 Badges
 -->
@@ -6,6 +5,9 @@ Badges
 [![GitHub issues][issues-badge]][issues]&nbsp;
 [![GitHub license][license-badge]][license]&nbsp;
 [![Code of Conduct][coc-badge]][coc]&nbsp;
+
+<img src="Images/core-restore-demo.gif" width="300" align="right" title="iOS Core Data Backup and Restore in Swift">
+
 
 <!--
 Badge References
