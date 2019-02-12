@@ -1,13 +1,12 @@
+<img src="Images/core-restore-demo.gif" width="300" align="right" title="iOS Core Data Backup and Restore in Swift"><br>
+# Swift CoreRestore
 <!--
 Badges
 -->
 [![Platform][mlw-badge]][repo]&nbsp;
-[![GitHub issues][issues-badge]][issues]&nbsp;
+[![GitHub issues][issues-badge]][issues]&nbsp;<br>
 [![GitHub license][license-badge]][license]&nbsp;
 [![Code of Conduct][coc-badge]][coc]&nbsp;
-
-<img src="Images/core-restore-demo.gif" width="300" align="right" title="iOS Core Data Backup and Restore in Swift">
-
 
 <!--
 Badge References
@@ -25,7 +24,7 @@ URL References
 [license]:https://github.com/cmilr/swift-core-restore/blob/master/LICENSE
 [coc]:https://github.com/cmilr/swift-core-restore/blob/master/CODE_OF_CONDUCT.md
 
-# Swift CoreRestore
+
 
 CoreRestore is a Swift library allowing you to easily add **backup and restore** functionality to iOS apps that employ Apple's Core Data. I built this library because I wanted the users of my apps to be able to easily restore their data to a previous state should the need ever arise (ahem-programmer error 😅)
 
