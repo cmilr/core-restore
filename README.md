@@ -1,4 +1,4 @@
-<img src="Images/core-restore-demo.gif" width="199" align="right" title="Core Data Backup and Restore in Swift for iOS"><img src="Images/core-restore.png" width="500" title="Core Data Backup and Restore in Swift for iOS"><br><br>
+<img src="Images/core-restore-demo-v2.gif" width="230" align="right" title="Core Data Backup and Restore in Swift for iOS"><img src="Images/core-restore.png" width="500" title="Core Data Backup and Restore in Swift for iOS"><br><br>
 <!--
 Badges
 -->
