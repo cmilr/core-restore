@@ -29,7 +29,6 @@ CoreRestore is a Swift library allowing you to easily add **backup and restore**
 
 ## Contact
 - Email: cary@cmillerco.com
-- Twitter: [@carycodes](https://twitter.com/carycodes)
 - GitHub: [cmilr](https://github.com/cmilr/)
 
 ## License
